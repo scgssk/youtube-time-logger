@@ -5,7 +5,7 @@ from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 
 # Setup Brave browser
-brave_path = "C:/Program Files/BraveSoftware/Brave-Browser/Application/Brave.exe"  # Change if you're on Windows/Mac
+brave_path = "path to brave"  # Change if you're on Windows/Mac
 options = Options()
 options.binary_location = brave_path
 driver = webdriver.Chrome(options=options)
