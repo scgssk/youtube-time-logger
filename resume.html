@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Resume YouTube Videos</title>
+  <style>
+    body {
+      background: #111;
+      color: #fff;
+      font-family: Arial, sans-serif;
+      padding: 2rem;
+    }
+    h1, h2 {
+      color: #ff4747;
+    }
+    button {
+      padding: 10px 20px;
+      background: #ff0000;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    a {
+      color: #00bfff;
+      text-decoration: none;
+      display: block;
+      margin: 8px 0;
+    }
+    .latest {
+      margin-bottom: 2rem;
+      padding: 1rem;
+      background-color: #222;
+      border-radius: 10px;
+    }
+  </style>
+</head>
+<body>
+  <h1>🎬 Resume Latest YouTube Video</h1>
+  <div id="latest">Loading latest video...</div>
+
+  <h2>📚 Previously Saved Videos</h2>
+  <div id="others">Loading...</div>
+
+  <script>
+    fetch("saved_links.json")
+      .then(res => res.json())
+      .then(data => {
+        if (data.length === 0) {
+          document.getElementById("latest").innerHTML = "<p>No saved videos.</p>";
+          document.getElementById("others").innerHTML = "";
+          return;
+        }
+
+        // Get the most recent entry
+        const latest = data[data.length - 1];
+
+        // Show latest with Continue Watching button
+        document.getElementById("latest").innerHTML = `
+          <div class="latest">
+            <p><strong>${latest.title}</strong></p>
+            <p><small>Saved at: ${new Date(latest.saved_at).toLocaleString()}</small></p>
+            <a href="${latest.url}" target="_blank">
+              <button>▶️ Continue from ${latest.time}s</button>
+            </a>
+          </div>
+        `;
+
+        // Show all others as anchors
+        const others = data.slice(0, -1); // all except latest
+        if (others.length === 0) {
+          document.getElementById("others").innerHTML = "<p>No earlier bookmarks.</p>";
+        } else {
+          const otherLinks = others.map(item => {
+            const label = `${item.title} at ${item.time}s`;
+            return `<a href="${item.url}" target="_blank">🔗 ${label}</a>`;
+          }).join("");
+          document.getElementById("others").innerHTML = otherLinks;
+        }
+      })
+      .catch(err => {
+        console.error(err);
+        document.getElementById("latest").innerHTML = "<p>Error loading saved links.</p>";
+        document.getElementById("others").innerHTML = "";
+      });
+  </script>
+</body>
+</html>
