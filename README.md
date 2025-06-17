@@ -103,9 +103,3 @@ Double-click or open `resume_youtube.html` in your browser.
 * [ ] Auto-run tracker in the background on boot
 
 ---
-
-## 📜 License
-
-MIT License — free to use and modify.
-
----
