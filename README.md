@@ -40,10 +40,15 @@ cd youtube-time-logger
 ## 2. Create and Activate a Virtual Environment
 
 python -m venv venv
+
 # Activate:
+
 # Windows
+
 venv\Scripts\activate
+
 # macOS/Linux
+
 source venv/bin/activate
 
 
@@ -81,18 +86,6 @@ Double-click or open `resume_youtube.html` in your browser.
 
 ---
 
-## 📁 Project Structure
-
-youtube-pause-logger/
-│
-├── youtube_pause_logger.py    # Python tracker script
-├── resume_youtube.html        # HTML page to view and resume saved videos
-├── saved_links.json           # Stores saved paused videos
-├── requirements.txt           # Python dependencies
-└── README.md                  # You're reading this
-
-
----
 
 ## 💡 Tips
 
